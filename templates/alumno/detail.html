@@ -1,0 +1,47 @@
+{% extends "layout/base.html" %}
+
+{% block 'title' %} alumno {{ alumno }} {% endblock  %}
+
+{% block 'content' %}
+    <div class="container">
+
+        <span class='btn-aux'>
+            <a href="{% url "alumno" %}" class='btn btn-detail'>Volver atrás</a>
+        </span>
+
+        <table>
+            <tr>
+                <th>Nombres:</th>
+                <td>{{alumno.nombres}}</td>
+            </tr>
+            <tr>
+                <th>Apellidos:</th>
+                <td>{{alumno.apellidos}}</td>
+            </tr>
+            <tr>
+                <th>Edad:</th>
+                <td>{{alumno.edad}}</td>
+            </tr>
+            <tr>
+                <th>Sexo:</th>
+                <td>{{alumno.sexo}}</td>
+            </tr>
+            <tr>
+                <th>Grado y Sección:</th>
+                <td>{{alumno.grado_y_seccion}}</td>
+            </tr>
+            <tr>
+                <th>Fecha de nacimiento:</th>
+                <td>{{alumno.fecha_de_nacimiento}}</td>
+            </tr>
+            <tr>
+                <th>Lugar de nacimiento:</th>
+                <td>{{alumno.lugar_de_nacimiento}}</td>
+            </tr>
+            <tr>
+                <th>Representante:</th>
+                <td>{{alumno.representante}}</td>
+            </tr>
+        </table>
+    </div>
+{% endblock  %}

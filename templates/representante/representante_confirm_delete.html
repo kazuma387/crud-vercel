@@ -1,0 +1,52 @@
+{% extends "layout/base.html" %}
+
+{% block 'title' %} Eliminar {{ representante }} {% endblock  %}
+
+{% block 'content' %}
+    <div class="container">
+        <h1>¿Estás seguro de borrar el representante?</h1>
+        <br>
+
+        <table>
+            <tr>
+                <th>Cédula:</th>
+                <td>{{representante.cedula}}</td>
+            </tr>
+            <tr>
+                <th>Nombres:</th>
+                <td>{{representante.nombres}}</td>
+            </tr>
+            <tr>
+                <th>Apellidos:</th>
+                <td>{{representante.apellidos}}</td>
+            </tr>
+            <tr>
+                <th>Serial Patria:</th>
+                <td>{{representante.serial_patria}}</td>
+            </tr>
+            <tr>
+                <th>Código Patria:</th>
+                <td>{{representante.codigo_patria}}</td>
+            </tr>
+            <tr>
+                <th>Teléfono:</th>
+                <td>{{representante.telefono}}</td>
+            </tr>
+            <tr>
+                <th>Email:</th>
+                <td>{{representante.email}}</td>
+            </tr>
+            <tr>
+                <th>Dirección:</th>
+                <td>{{representante.direccion}}</td>
+            </tr>
+        </table>
+
+        <br>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="submit" class="confir-delete affirmative" value="Sí, borrar">
+            <a href="{% url 'representante' %}" class="confir-delete denied">No, cancelar</a>
+        </form>
+    </div>
+{% endblock %}

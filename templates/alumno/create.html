@@ -1,0 +1,25 @@
+{% extends "layout/base.html" %}
+
+{% block 'title' %} Añadir alumno {{ alumno }} {% endblock  %}
+
+{% block 'styles' %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/form.css" %}">
+{% endblock  %}
+
+{% block 'content' %}
+    <div class="container">
+        {% include "alumno/partials/msg_success.html" %}
+
+        <span class='btn-aux'>
+            <a href="{% url "alumno" %}" class='btn btn-detail'>Volver atrás</a>
+        </span>
+
+        {# el method='PUT' se usa para actualizar pero aqui usamos el post #}
+        <form action="{% url "alumno_create" %}" method='POST'>
+            {% csrf_token %}
+            {{form}}
+            <input type="submit" value="Guardar">
+        </form>
+    </div>
+{% endblock  %}

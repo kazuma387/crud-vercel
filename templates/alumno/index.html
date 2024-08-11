@@ -1,0 +1,26 @@
+{% extends "layout/base.html" %}
+
+{% block 'title' %} Alumnos {% endblock  %}
+
+{% block 'content' %}
+    <div class="container">
+        {#para visulizar el mensaje #}
+        {% include "alumno/partials/msg_delete.html" %}
+
+        <h1>Gestor de alumnos</h1>
+
+        {% include "alumno/partials/search.html" %}
+        {% include "alumno/partials/by_initial.html" %}
+
+        <span class='btn-aux'>
+            <a href="{% url "alumno" %}" class='btn btn-detail'>Ver todos</a>
+            {% if perms.repreStudy.add_alumno %}
+                <a href="{% url "alumno_create" %}" class='btn btn-edit'>Añadir</a>
+            {% else %}
+                <a href="javascript:void(0);" class='btn btn-edit btn-disabled' title="No tienes permiso para añadir">Añadir</a>
+            {% endif %}
+        </span>
+
+        {% include "alumno/partials/lista_alumno.html" %}
+    </div>
+{% endblock  %}

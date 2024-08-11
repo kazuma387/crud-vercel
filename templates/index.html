@@ -1,0 +1,50 @@
+{% extends "layout/base.html" %}
+
+{% block 'title' %} Inicio {% endblock  %}
+
+{% block 'styles' %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/cards.css" %}">
+{% endblock  %}
+
+{% block 'content' %}
+    <h1>U.E.N Carmen Palomares de Romero II</h1>
+    
+    {% if request.user.is_authenticated %}
+    <h4>
+        {{ user.username | upper }}, te doy la bienvenida
+    </h4>
+{% endif %}
+
+    <div class="container-cards">
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="{% static "img/representantes.png" %}">
+                    <h3>Representantes</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>Permite gestionar representantes de la institución, incluyendo la visualización, edición y eliminación de datos. Esto facilita la administración de la información y el control de los recursos humanos.</p>
+                        <a href="{% url "representante" %}">Ver más</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="{% static "img/alumnos.png" %}">
+                    <h3>Alumnos</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>Permite gestionar alumnos, incluyendo la visualización, edición y eliminación de datos, facilitando la organización y el seguimiento de la información académica.</p>
+                        <a href="{% url "alumno" %}">Ver más</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock  %}

@@ -1,0 +1,56 @@
+{% extends "layout/base.html" %}
+
+{% block 'title' %} Representante {{ representante }} {% endblock  %}
+
+{% block 'content' %}
+    <div class="container">
+        <span class='btn-aux'>
+            <a href="{% url "representante" %}" class='btn btn-detail'>Volver atrás</a>
+        </span>
+
+        <table>
+            <tr>
+                <th>Cédula:</th>
+                <td>{{representante.cedula}}</td>
+            </tr>
+            <tr>
+                <th>Nombres:</th>
+                <td>{{representante.nombres}}</td>
+            </tr>
+            <tr>
+                <th>Apellidos:</th>
+                <td>{{representante.apellidos}}</td>
+            </tr>
+            <tr>
+                <th>Serial Patria:</th>
+                <td>{{representante.serial_patria}}</td>
+            </tr>
+            <tr>
+                <th>Código Patria:</th>
+                <td>{{representante.codigo_patria}}</td>
+            </tr>
+            <tr>
+                <th>Teléfono:</th>
+                <td>{{representante.telefono}}</td>
+            </tr>
+            <tr>
+                <th>Email:</th>
+                <td>{{representante.email}}</td>
+            </tr>
+            <tr>
+                <th>Dirección:</th>
+                <td>{{representante.direccion}}</td>
+            </tr>
+        </table>
+        <br>
+
+        <h2>Representante de</h2>
+        <ul class='alumnos'>
+            {% for alumno in alumnos %}
+                <li>{{ alumno}}</li>
+            {% empty %}
+                <li>No hay alumnos asociados a este representante.</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock  %}

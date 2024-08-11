@@ -1,0 +1,26 @@
+{% extends "layout/base.html" %}
+
+{% block 'title' %} Representantes {% endblock  %}
+
+{% block 'content' %}
+    <div class="container">
+        {#para visulizar el mensaje #}
+        {% include "representante/partials/msg_delete.html" %}
+
+        <h1>Gestor de Representantes</h1>
+
+        {% include "representante/partials/search.html" %}
+        {% include "representante/partials/by_initial.html" %}
+
+        <span class='btn-aux'>
+            <a href="{% url "representante" %}" class='btn btn-detail'>Ver todos</a>
+            {% if perms.repreStudy.add_representante %}
+                <a href="{% url "representante_create" %}" class='btn btn-edit'>Añadir</a>
+            {% else %}
+                <a href="javascript:void(0);" class='btn btn-edit btn-disabled' title="No tienes permiso para añadir">Añadir</a>
+            {% endif %}
+        </span>
+
+        {% include "representante/partials/lista_representante.html" %}
+    </div>
+{% endblock  %}

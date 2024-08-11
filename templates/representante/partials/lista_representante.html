@@ -1,0 +1,47 @@
+<ul class='list'>
+    {% for representante in representantes %}
+    <li>
+        {{representante.nombres}}
+        <span>
+            <a href="{% url "representante_view" id=representante.id  %}" class='btn btn-detail'>Ver</a>
+
+            {% if perms.repreStudy.change_representante %}
+                <a href="{% url "representante_edit" id=representante.id  %}" class='btn btn-edit'>Editar</a>
+            {% else %}
+                <a href="javascript:void(0);" class='btn btn-edit btn-disabled' title="No tienes permiso para editar">Editar</a>
+            {% endif %}
+
+            {% if perms.repreStudy.delete_representante %}
+                <a href="{% url "representante_delete" id=representante.id  %}" class='btn btn-delete'>Borrar</a>
+            {% else %}
+                <a href="javascript:void(0);" class='btn btn-delete btn-disabled' title="No tienes permiso para borrar">Borrar</a>
+            {% endif %}
+        </span>
+    </li>
+    {% endfor %}
+
+    {# para visulizar el mensaje de no encontrado #}
+    {% if no_results_message %}
+        <li>{{ no_results_message }}</li>
+    {% endif %}
+
+    {# para visualizar la paginación #}
+    <div class="pagination">
+        <span class="step-links">
+            {% if representantes.has_previous %}
+                <a href="?page=1">Primera</a>
+                <a href="?page={{ representantes.previous_page_number }}&search={{ search_query }}">Anterior</a>
+            {% endif %}
+    
+            <span class="current">
+                Página {{ representantes.number }} de {{ representantes.paginator.num_pages }}
+            </span>
+    
+            {% if representantes.has_next %}
+                <a href="?page={{ representantes.next_page_number }}&search={{ search_query }}">Siguiente</a>
+                <a href="?page={{ representantes.paginator.num_pages }}&search={{ search_query }}">Última</a>
+            {% endif %}
+        </span>
+    </div>
+    
+</ul>

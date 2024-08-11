@@ -1,0 +1,45 @@
+<ul class='list'>
+    {% for alumno in alumnos %}
+    <li>
+        {{alumno.nombres}}
+        <span>
+            <a href="{% url "alumno_view" id=alumno.id  %}" class='btn btn-detail'>Ver</a>
+            {% if perms.repreStudy.change_alumno %}
+                <a href="{% url "alumno_edit" id=alumno.id  %}" class='btn btn-edit'>Editar</a>
+            {% else %}
+                <a href="javascript:void(0);" class='btn btn-edit btn-disabled' title="No tienes permiso para editar">Editar</a>
+            {% endif %}
+            {% if perms.repreStudy.delete_alumno %}
+                <a href="{% url "alumno_delete" id=alumno.id  %}" class='btn btn-delete'>Borrar</a>
+            {% else %}
+                <a href="javascript:void(0);" class='btn btn-delete btn-disabled' title="No tienes permiso para borrar">Borrar</a>
+            {% endif %}
+        </span>
+    </li>
+    {% endfor %}
+
+    {# para visulizar el mensaje de no encontrado #}
+    {% if no_results_message %}
+        <li>{{ no_results_message }}</li>
+    {% endif %}
+
+    {# para visualizar la paginación #}
+    <div class="pagination">
+        <span class="step-links">
+            {% if alumnos.has_previous %}
+                <a href="?page=1">Primera</a>
+                <a href="?page={{ alumnos.previous_page_number }}&search={{ search_query }}">Anterior</a>
+            {% endif %}
+    
+            <span class="current">
+                Página {{ alumnos.number }} de {{ alumnos.paginator.num_pages }}
+            </span>
+    
+            {% if alumnos.has_next %}
+                <a href="?page={{ alumnos.next_page_number }}&search={{ search_query }}">Siguiente</a>
+                <a href="?page={{ alumnos.paginator.num_pages }}&search={{ search_query }}">Última</a>
+            {% endif %}
+        </span>
+    </div>
+    
+</ul>
